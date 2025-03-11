@@ -31,11 +31,14 @@ export const Profile = () => {
           <ProfileItem label="Email" value={user?.email} />
           <ProfileItem label="Phone No" value={user?.phoneNo} />
           <ProfileItem label="Assigned Team" value={user?.team?.teamName} />
-          <ProfileItem label="Leader of" value={user?.teamLeader?.teamName} />
+          {
+            user?.teamLeader && 
+            <ProfileItem label="Leader of" value={user?.teamLeader?.teamName} />
+          }
         </div>
 
         {/* Action Buttons */}
-        <motion.div
+        {/* <motion.div
           className="flex justify-center gap-4"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -48,7 +51,7 @@ export const Profile = () => {
           >
             Logout
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   );
@@ -66,46 +69,3 @@ const ProfileItem = ({ label, value }) => {
     </motion.div>
   );
 };
-
-// export default Profile;
-
-// import React from 'react'
-
-// export const Profile = () => {
-//   return (
-//     <div className='flex flex-col gap-5'>
-//       <h1 className='font-bold text-3xl'>My Profile</h1>
-
-//       <div className='flex flex-col gap-1'>
-//         <div className='flex gap-2'>
-//           <h3>Role:</h3>
-//           <p>My Role</p>
-//         </div>
-//         <div className='flex gap-2'>
-//           <h3>Name:</h3>
-//           <p>My Name</p>
-//         </div>
-//         <div className='flex gap-2'>
-//           <h3>Email:</h3>
-//           <p>My Email</p>
-//         </div>
-//         <div className='flex gap-2'>
-//           <h3>Phone Number:</h3>
-//           <p>My Phone Number</p>
-//         </div>
-//         {
-//           <div className='flex gap-2'>
-//             <h3>Team:</h3>
-//             <p>My Team</p>
-//           </div>
-//         }
-//         {
-//           <div className='flex gap-2'>
-//             <h3>Team Leader:</h3>
-//             <p>Is Team Leader</p>
-//           </div>
-//         }
-//       </div>
-//     </div>
-//   )
-// }

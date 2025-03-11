@@ -93,7 +93,7 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
                       <td className="p-2 border">{getAssignedName(st?.assignedTo)}</td>
                       <td className="p-2 px-4 border">
                         <p className={`p-1 rounded-full text-sm font-bold text-white ${
-                          st?.status === STATUS.COMPLETED ? "bg-green-100" : "bg-red-500"
+                          st?.status === STATUS.COMPLETED ? "bg-green-500" : "bg-red-500"
                         }`}>{st?.status}</p>
                       </td>
                     </motion.tr>

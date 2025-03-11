@@ -7,7 +7,8 @@ const {
     CREATE_USER_API, // post
     EDIT_USER_API, //put
     DELETE_USER_API, // delete
-    FETCH_COMPLETE_USER_DETAILS_API //post
+    FETCH_COMPLETE_USER_DETAILS_API, //post
+    EDIT_STEP_API
 } = userEndpoints;
 
 export const createUser = async(formData,token)=>{
@@ -95,6 +96,36 @@ export const fetchAllEmployees = async(token)=>{
         console.log("FETCH_ALL_EMPLOYEES_API_ERROR:",err);
         toast.dismiss(toastId);
         toast.error(err?.response?.data?.message || err?.message)
+        return null;
+    }
+}
+
+export const editStepDetails = async(formData,token)=>{
+    let toastId = toast.loading("Saving Changes");
+    try {
+        
+        const response = await apiConnector(
+            "PUT",
+            EDIT_STEP_API,
+            formData,
+            // {
+            //     "Authorization":`Bearer ${token}`
+            // }
+        );
+
+        if(!response?.data?.success){
+            throw new Error(response?.data?.message);
+        }
+
+        // console.log("EDIT_STEP_API_RESPONSE:",response);
+        toast.dismiss(toastId);
+        toast.success(response?.data?.message);       
+        return response?.data?.data;
+        
+    } catch (err) {
+        console.log("EDIT_STEP_API_ERROR:",err);
+        toast.dismiss(toastId);
+        toast.error(err?.response?.data?.message || err?.message);
         return null;
     }
 }

@@ -7,7 +7,7 @@ export const sideBarLinks = [
         name: "Tasks",
         path: "/dashboard/tasks"
     },
-    {
-        name: "Logout"
-    }
+    // {
+    //     name: "Logout"
+    // }
 ]

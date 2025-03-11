@@ -14,6 +14,7 @@ export const userEndpoints = {
     EDIT_USER_API: BASE_URL + "/users/updateUser",
     DELETE_USER_API: BASE_URL + "/users/deleteUser",
     FETCH_COMPLETE_USER_DETAILS_API: BASE_URL + "/users/getUserById",
+    EDIT_STEP_API: BASE_URL + "/steps/updateStep"
 }
 
 export const teamEndpoints = {
