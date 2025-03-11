@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { AddTaskDetails } from './AddTaskDetails';
 import { AuthContext } from '../../../../Context/AuthContext';
 import { fetchCompleteTaskDetails, fetchTeamMembers } from '../../../../services/operations/authAPI';
 import { ShowTaskDetails } from './ShowTaskDetails';
+import { EditStepStatus } from './EditStepStatus';
 
 export const EditTaskDetails = () => {
 
@@ -25,13 +25,12 @@ export const EditTaskDetails = () => {
   }
 
   const fetchMemebrs = async()=>{
-    // setLoading(true);
+    setLoading(true);
     const result = await fetchTeamMembers(token,{teamId:task?.team?._id});
     if(result){
       setMembers(result);
     }
-   
-    // setLoading(false);
+    setLoading(false);
   }
 
   useEffect(()=>{
@@ -49,22 +48,22 @@ export const EditTaskDetails = () => {
     }
   },[task])
 
-  if(loading){
+  if(loading || !task || !members){
     return <p>Loading ......</p>
   }
 
   return (
     <div className='w-full h-full'>
       {
-        showDetails && task &&
+        showDetails && task && members &&
         <ShowTaskDetails task={task} members={members} setShowDetails={setShowDetails} showDetails={showDetails} />
       }
       
-      {/* {
+      {
         !showDetails &&
         editTask && task && members &&
-        <AddTaskDetails members={members} task={task} editTask={editTask}/>
-      } */}
+        <EditStepStatus members={members} task={task} editTask={editTask}/>
+      }
     </div>
   )
 }

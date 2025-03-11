@@ -5,6 +5,7 @@ import { fetchAllEmployeeTasks } from "../../../services/operations/authAPI";
 import { Spinner } from "../../common/Spinner";
 import { motion } from "framer-motion";
 import { formattedFullDate } from "../../../utils/dateFormatter";
+import { STATUS } from "../../../utils/constants";
 
 const MyTasks = () => {
   const { token, loading, setLoading } = useContext(AuthContext);
@@ -45,19 +46,22 @@ const MyTasks = () => {
                 whileHover={{ scale: 1.04, boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.2)" }}
                 className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 flex flex-col"
               >
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <div className="flex flex-col gap-1 items-start"> 
+                  <h3 className="text-xl font-semibold text-gray-800">
                     Task Name: {ts?.name}
                   </h3>
-                  <p className="text-gray-700 mb-1">
+                  <p className="text-gray-700">
                     <span className="font-medium">Created At:</span> {formattedFullDate(ts?.createdAt)}
                   </p>
-                  <p className="text-gray-700 mb-1">
+                  <p className="text-gray-700">
                     <span className="font-medium">Deadline:</span> {formattedFullDate(ts?.deadline)}
                   </p>
-                  <p className="text-gray-700">
+                  {/* <p className="text-gray-700">
                     <span className="font-medium">Status:</span> {ts?.status}
-                  </p>
+                  </p> */}
+                  <span className={`p-[0.2rem] px-[0.5rem] rounded-full text-sm font-medium text-white ${
+                    ts?.status === STATUS.COMPLETED ? "bg-green-500" : "bg-red-500"
+                  }`}>{ts?.status}</span>
                 </div>
               </motion.div>
             </Link>

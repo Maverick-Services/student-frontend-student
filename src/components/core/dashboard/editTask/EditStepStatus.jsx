@@ -1,8 +1,104 @@
-import React from 'react'
+import React, { useContext, useState } from 'react';
+import { motion } from "framer-motion";
+import { AuthContext } from '../../../../Context/AuthContext';
+import { STATUS } from '../../../../utils/constants';
 
-export const AddTaskDetails = () => {
+export const EditStepStatus = ({task,members}) => {
+  
+  const {user} = useContext(AuthContext);
+  const [stepStatus, setStepStatus] = useState({
+    stepId: "",
+    status: ""
+  });
+
+  const statusInputChangeHandler = (e,stepId) => {
+    setStepStatus({
+      stepId,
+      status: e.target.value
+    });
+  };
+
+  const updateStepStatus = async(e)=>{
+    e.preventDefault();
+    const arr = task?.steps?.map(st => {return {stepId:st?._id}});
+    console.log(arr);
+  }
+
+  // Keep the existing logic
+  const getAssignedName = (id) => {
+    const assignedEmp = members?.filter((mb) => mb?._id === id)[0]?.name;
+    return assignedEmp;
+  };
+
   return (
-    <div>AddTaskDetails</div>
+    <div className='w-full max-w-4xl mx-auto bg-white shadow-md rounded-md p-3 py-6 md:p-6 overflow-x-auto'>
+      {/* Steps Table */}
+      {task?.steps && task?.steps?.length > 0 && (
+        <div className="w-full py-4 flex flex-col gap-3">
+          <p className="text-lg font-bold text-[#1C398E]">Steps:</p>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-gray-200">
+              <thead className="bg-[#1C398E] text-white">
+                <tr>
+                  <th className="p-2 border">Name</th>
+                  <th className="p-2 border">Description</th>
+                  <th className="p-2 border">Assigned To</th>
+                  <th className="p-2 border">Status</th>
+                  {/* <th className="p-2 border">Actions</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                {task?.steps?.map((st, id) => (
+                  // st?.assignedTo === user?._id &&
+                  <motion.tr
+                    key={id}
+                    className={`text-center`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: id * 0.1 }}
+                  >
+                    <td className="p-2 border">{st?.name}</td>
+                    <td className="p-2 border">{st?.description}</td>
+                    <td className="p-2 border">{getAssignedName(st?.assignedTo)}</td>
+                    <td className="p-2 border">
+                      {/* <p className={`p-1 rounded-full text-sm font-bold text-white ${
+                        st?.status === STATUS.COMPLETED ? "bg-green-100" : "bg-red-500"
+                      }`}>
+                          {st?.status}
+                      </p> */}
+
+                      <form onSubmit={updateStepStatus}>
+                        <select
+                          onChange={(e) => statusInputChangeHandler(e,st?._id)}
+                          defaultValue={st?.status ? st?.status : STATUS.PENDING}
+                          name="status"
+                          id="status"
+                          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#1C398E]"
+                        >
+                        {
+                          Object.values(STATUS).map((ws,index)=>{
+                            return <option key={index} value={ws}>
+                                    {ws}
+                                </option>
+                          })
+                        }
+                        </select>
+                        <button type='submit'>
+                          Update Status
+                        </button>
+                      </form>
+                    </td>
+                    {/* <td className="p-2 border">
+
+                    </td> */}
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 

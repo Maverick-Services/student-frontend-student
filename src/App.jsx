@@ -2,12 +2,11 @@ import './App.css'
 import Dashboard from './pages/Dashboard'
 import { Route, Routes } from 'react-router-dom'
 import { Profile } from './components/core/dashboard/Profile'
-import Navbar from './components/Navbar'
 import MyTasks from './components/core/dashboard/MyTasks'
 import { Login } from './pages/Login'
 import OpenRoute from './components/core/auth/OpenRoute'
 import PrivateRoute from './components/core/auth/PrivateRoute'
-import { EditTaskDetails } from './components/core/dashboard/editTask/EditTskDetails'
+import { EditTaskDetails } from './components/core/dashboard/editTask/EditTaskDetails'
 
 function App() {
   return (

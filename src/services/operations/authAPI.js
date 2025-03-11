@@ -66,7 +66,7 @@ export const fetchAllEmployeeTasks = async(token)=>{
 
         // console.log("FETCH_ALL_EMPLOYEE_TASKS_API_RESPONSE:",response);
         toast.dismiss(toastId);
-        toast.success(response?.data?.message);
+        // toast.success(response?.data?.message);
         return response?.data?.data;
         
     } catch (err) {
@@ -94,7 +94,7 @@ export const fetchTeamMembers = async(token,formData)=>{
         }
 
         // console.log("FETCH_TEAM_MEMBERS_API_RESPONSE:",response);
-        toast.success(response?.data?.message);
+        // toast.success(response?.data?.message);
         return response?.data?.data;
         
     } catch (err) {
@@ -117,8 +117,8 @@ export const fetchCompleteTaskDetails = async(formData)=>{
             throw new Error(response?.data?.message);
         }
 
-        toast.dismiss(toastId);
         // console.log("FETCH_COMPLETE_TASK_DETAILS_API_RESPONSE",response);
+        toast.dismiss(toastId);
         return response?.data?.data;
 
     } catch (err) {

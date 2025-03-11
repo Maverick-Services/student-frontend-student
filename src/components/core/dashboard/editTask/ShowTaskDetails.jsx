@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { formattedFullDate } from "../../../../utils/dateFormatter";
+import { STATUS } from "../../../../utils/constants";
 
 export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) => {
   // Keep the existing logic
@@ -19,7 +20,12 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
       >
         {/* Header Row */}
         <div className="w-full flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-[#1C398E]">Task Details</h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-[#1C398E]">Task Details</h1>
+            <p className={`p-1 px-3 rounded-full text-sm font-bold text-white ${
+                task?.status === STATUS.COMPLETED ? "bg-green-500" : "bg-red-500"
+              }`}>{task?.status}</p>
+          </div>
           <button
             onClick={() => setShowDetails(!showDetails)}
             className="bg-[#1C398E] text-white px-4 py-2 rounded-md hover:bg-[#142A6E] transition"
@@ -30,10 +36,11 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
 
         {/* Task Info Grid */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-2 py-4">
-          <div className="flex items-start gap-3">
+          {/* <div className="flex items-start gap-3">
             <p className="text-gray-600 font-medium">Status: </p>
             <p className="text-gray-800">{task?.status}</p>
-          </div>
+            
+          </div> */}
           <div className="flex items-start gap-3">
             <p className="text-gray-600 font-medium">Created At: </p>
             <p className="text-gray-800">{formattedFullDate(task?.createdAt)}</p>
@@ -62,7 +69,7 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
             <p className="text-lg font-bold text-[#1C398E]">Steps:</p>
             <div className="overflow-x-auto">
               <table className="w-full border border-gray-200">
-                <thead className="bg-gray-100">
+                <thead className="bg-[#1C398E] text-white">
                   <tr>
                     <th className="p-2 border">Sno</th>
                     <th className="p-2 border">Name</th>
@@ -75,7 +82,7 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
                   {task?.steps?.map((st, id) => (
                     <motion.tr
                       key={id}
-                      className="text-center"
+                      className={`text-center`}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: id * 0.1 }}
@@ -84,7 +91,11 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
                       <td className="p-2 border">{st?.name}</td>
                       <td className="p-2 border">{st?.description}</td>
                       <td className="p-2 border">{getAssignedName(st?.assignedTo)}</td>
-                      <td className="p-2 border">{st?.status}</td>
+                      <td className="p-2 px-4 border">
+                        <p className={`p-1 rounded-full text-sm font-bold text-white ${
+                          st?.status === STATUS.COMPLETED ? "bg-green-100" : "bg-red-500"
+                        }`}>{st?.status}</p>
+                      </td>
                     </motion.tr>
                   ))}
                 </tbody>
