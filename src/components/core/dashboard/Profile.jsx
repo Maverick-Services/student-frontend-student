@@ -31,6 +31,7 @@ export const Profile = () => {
           <ProfileItem label="Email" value={user?.email} />
           <ProfileItem label="Phone No" value={user?.phoneNo} />
           <ProfileItem label="Assigned Team" value={user?.team?.teamName} />
+          <ProfileItem label="Assigned Tasks" value={user?.tasks?.length} />
           {
             user?.teamLeader && 
             <ProfileItem label="Leader of" value={user?.teamLeader?.teamName} />
