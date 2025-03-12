@@ -4,7 +4,7 @@ import { AuthContext } from '../../../../Context/AuthContext';
 import { STATUS } from '../../../../utils/constants';
 import { editStepDetails } from '../../../../services/operations/userAPI';
 
-export const EditStepStatus = ({task,members}) => {
+export const EditStepStatus = ({task, members, setShowDetails, showDetails}) => {
   
   const {user,token} = useContext(AuthContext);
   const [editStep,setEditStep] = useState(null);
@@ -39,12 +39,25 @@ export const EditStepStatus = ({task,members}) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className='w-full max-w-4xl mx-auto bg-white shadow-md rounded-md p-3 py-6 md:p-6 overflow-x-auto'
+        className='w-full max-w-5xl mx-auto bg-white shadow-md rounded-md p-3 py-6 md:p-6'
       >
+        {/* Header Row */}
+        <div className="w-full flex items-center justify-between mb-8">
+          <h1 className="text-2xl font-bold text-[#1C398E]">Edit Steps Status</h1>
+          {
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="bg-[#1C398E] text-white px-4 py-2 rounded-md hover:bg-[#142A6E] transition"
+            >
+              Cancel
+            </button>
+          }
+        </div>
+
         {/* Steps Table */}
         {task?.steps && task?.steps?.length > 0 && (
-          <div className="w-full py-4 flex flex-col gap-3">
-            <p className="text-lg font-bold text-[#1C398E]">Steps:</p>
+          <div className="w-full py-4 flex flex-col gap-3 overflow-x-auto">
+            {/* <p className="text-lg font-bold text-[#1C398E]">Steps:</p> */}
             <div className="overflow-x-auto">
               <table className="w-full border border-gray-200">
                 <thead className="bg-[#1C398E] text-white">

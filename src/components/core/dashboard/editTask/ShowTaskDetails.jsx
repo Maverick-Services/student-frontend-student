@@ -13,7 +13,7 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
   return (
     <div className="min-h-screen p-6">
       <motion.div
-        className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-md p-3 py-6 md:p-6"
+        className="w-full max-w-5xl mx-auto bg-white shadow-md rounded-md p-3 py-6 md:p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
