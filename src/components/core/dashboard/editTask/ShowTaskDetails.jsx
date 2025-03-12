@@ -26,12 +26,15 @@ export const ShowTaskDetails = ({ task, members, setShowDetails, showDetails }) 
                 task?.status === STATUS.COMPLETED ? "bg-green-500" : "bg-red-500"
               }`}>{task?.status}</p>
           </div>
-          <button
-            onClick={() => setShowDetails(!showDetails)}
-            className="bg-[#1C398E] text-white px-4 py-2 rounded-md hover:bg-[#142A6E] transition"
-          >
-            Edit
-          </button>
+          {
+            task?.status !== STATUS.COMPLETED &&
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="bg-[#1C398E] text-white px-4 py-2 rounded-md hover:bg-[#142A6E] transition"
+            >
+              Edit
+            </button>
+          }
         </div>
 
         {/* Task Info Grid */}
