@@ -4,6 +4,7 @@ import { AuthContext } from '../../../../Context/AuthContext';
 import { fetchCompleteTaskDetails, fetchTeamMembers } from '../../../../services/operations/authAPI';
 import { ShowTaskDetails } from './ShowTaskDetails';
 import { EditStepStatus } from './EditStepStatus';
+import { Spinner } from '../../../common/Spinner';
 
 export const EditTaskDetails = () => {
 
@@ -49,7 +50,7 @@ export const EditTaskDetails = () => {
   },[task])
 
   if(loading || !task || !members){
-    return <p>Loading ......</p>
+    return <Spinner/>
   }
 
   return (
