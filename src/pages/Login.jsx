@@ -21,7 +21,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+    <div className="flex justify-center items-center min-h-screen p-6 login-bg">
       {/* Left Section - Employee Portal Info */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -30,9 +30,9 @@ export const Login = () => {
         className="hidden md:flex flex-col items-center justify-center w-1/3 h-[70vh] p-8 bg-[#1C398E] text-white rounded-l-2xl shadow-lg"
       >
         <User size={50} className="text-white" />
-        <h3 className="text-xl font-semibold text-center">Employee Portal Access</h3>
+        <h3 className="text-xl font-semibold text-center">Student Portal Access</h3>
         <p className="text-center text-sm opacity-80">
-          Log in to view your tasks, update your profile, and manage your schedule.
+          Log in to view your profile details, and fee details.
         </p>
       </motion.div>
 
@@ -44,7 +44,7 @@ export const Login = () => {
         className="flex flex-col justify-center w-full max-w-sm h-[70vh] bg-white shadow-lg rounded-r-2xl p-10"
       >
         <h2 className="text-2xl font-semibold text-center text-[#1C398E]">
-          Employee Login
+          Student Login
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 mt-6">
           {/* Email Input */}
