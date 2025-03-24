@@ -28,7 +28,7 @@ export async function login(formData,navigate,setUser,setToken){
         setToken(response?.data?.data?.token);
         
         toast.dismiss(toastId);
-        navigate('/dashboard/profile');
+        navigate('/dashboard/');
         toast.success(response?.data?.message);       
         
     } catch (err) {

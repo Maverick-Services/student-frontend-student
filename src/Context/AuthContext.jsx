@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { FEE_DETAILS } from "../utils/constants";
 
 export const AuthContext = createContext();
 
@@ -11,6 +12,7 @@ function AuthContextProvider({children}){
     const [token, setToken] = useState(
         localStorage?.getItem("token") ? localStorage?.getItem("token") : null
     )
+    const [feeDetails,setFeeDetails] = useState(FEE_DETAILS);
     const [task,setTask] = useState(null);
     const [editTask,setEditTask] = useState(false);
    
@@ -28,6 +30,7 @@ function AuthContextProvider({children}){
         task, setTask,
         editTask, setEditTask,
         user, setUser,
+        feeDetails, setFeeDetails,
         token, setToken,
         loading, setLoading
     }

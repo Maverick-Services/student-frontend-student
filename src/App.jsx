@@ -7,6 +7,7 @@ import { Login } from './pages/Login'
 import OpenRoute from './components/core/auth/OpenRoute'
 import PrivateRoute from './components/core/auth/PrivateRoute'
 import { EditTaskDetails } from './components/core/dashboard/editTask/EditTaskDetails'
+import FeeDetails from './components/core/dashboard/FeeDetails'
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route path='/dashboard/profile' element={<Profile/>}/>
+          <Route path='/dashboard/' element={<Profile/>}/>
           <Route path='/dashboard/tasks' element={<MyTasks/>}/>
+          <Route path='/dashboard/fees' element={<FeeDetails/>}/>
           <Route path='/dashboard/tasks/:taskId' element={<EditTaskDetails/>}/>
         </Route>
       </Routes>
