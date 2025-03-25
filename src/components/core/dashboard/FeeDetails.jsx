@@ -50,7 +50,7 @@ const FeeDetails = () => {
     <LayoutProvider heading={"Manage Fees"}>
       <div className="w-full min-h-screen bg-gray-100 flex flex-col gap-6">
         <div className="flex w-full justify-between items-center">
-          <h1 className="text-2xl font-semibold text-[#1C398E]">Fee Deatils</h1>
+          <h1 className="text-2xl font-semibold text-[#1C398E]">Fee Details</h1>
         </div>
         <div className="flex w-full flex-wrap gap-4 justify-between items-center p-4 bg-white">
             <p className="text-blue-900 font-semibold">
