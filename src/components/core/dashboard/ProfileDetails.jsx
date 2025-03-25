@@ -1,50 +1,38 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import { AuthContext } from "../../../Context/AuthContext";
+// import { AuthContext } from "../../../Context/AuthContext";
 import { ChartComponent } from "./ProfileChart";
 import LayoutProvider from "../../common/LayoutProvider";
+import { CLASSES, ROUTES } from "../../../utils/constants";
 
-export const Profile = () => {
+export const ProfileDetails = () => {
 
-  const {user} = useContext(AuthContext);
-  // console.log(admin)
-
-  
-  const getRandomColors = (numColors)=>{
-    const colors = [];
-    for(let i=0; i<numColors; i++){
-      const color = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
-      // console.log(color);
-      colors.push(color);
+    const user = {
+        name: "Abhay Gupta",
+        email: "abhaygupta.kiit@gmail.com",
+        phoneNumber: "8700381153",
+        fatherName: "Santosh Gupta",
+        motherName: "Ritu Gupta",
+        class: "640fe1e2f8a7d64f7b6e4a18",
+        route: "ROUTE-12 (SEC-17A, Sec-17C, Bus Stand)"
     }
-    return colors;
-  }
+    const getClass = (id) => {
+        const classData = CLASSES?.filter(cl => cl?._id === id)[0];
+        // console.log(classData);
+        return classData;
+    }
 
-  const chartData1 = {
-    labels: ["Fees Paid","Fees Remaining"],
-    datasets:[
-      {
-        data: [35000,15000],
-        backgroundColor: getRandomColors(3)
-      }
-    ]
-  }
-  
-  const chartData2 = {
-    labels: ["Installments Paid","Installments Remaining"],
-    datasets:[
-      {
-        data: [7,5],
-        backgroundColor: getRandomColors(2)
-      }
-    ]
+  const getRoute = (route) => {
+    const routeData = ROUTES?.filter(rt => rt?.route === route)[0];
+    // console.log(classData);
+    return routeData;
   }
 
   return (
     <LayoutProvider heading={'Academic Year 2025-26'}>
       <div className="w-full flex flex-col gap-3 lg:items-center justify-center">
         <motion.div
-          className="w-full h-full flex flex-col gap-4 items-start"
+          className="w-full h-full flex flex-col items-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -56,17 +44,22 @@ export const Profile = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            Welcome {user?.name}👋
+            Profile Details
           </motion.h1>
 
           {/* Profile Details */}
-          <div className="space-y-4 w-full py-4 flex items-center max-lg:flex-col justify-center gap-2">
-            <ChartComponent data={chartData1} />
-            <ChartComponent data={chartData2} />
+          <div className="space-y-4 w-full md:w-[50%] py-4 flex items-stretch flex-col justify-center gap-2">
+            <ProfileItem label={"Name"} value={user?.name} />
+            <ProfileItem label={"Email"} value={user?.email} />
+            <ProfileItem label={"Contact No"} value={user?.phoneNumber} />
+            <ProfileItem label={"Father's Name"} value={user?.fatherName} />
+            <ProfileItem label={"Mother's Name"} value={user?.motherName} />
+            <ProfileItem label={"Class"} value={getClass(user?.class)?.class_name} />
+            <ProfileItem label={"Bus Route"} value={getRoute(user?.route)?.route} />
           </div>
 
           {/* Notice Board */}
-          <motion.div
+          {/* <motion.div
             className="w-full h-full"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -85,27 +78,22 @@ export const Profile = () => {
                 No Queries Yet
               </p>
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </LayoutProvider>
-  );
+  )
 };
 
 // Profile Item Component
-const ProfileItem = ({ label, value, img }) => {
+const ProfileItem = ({ label, value }) => {
   return (
     <motion.div
-      className="max-sm:w-full flex flex-col gap-2 justify-between items-center shadow-sm bg-white p-4 px-6 rounded-lg hover:bg-gray-50 transition border border-gray-50 cursor-pointer"
+      className="max-sm:w-full flex gap-2 justify-between items-center shadow-sm bg-white p-4 px-6 rounded-lg hover:bg-gray-50 transition border border-gray-50 cursor-pointer"
       whileHover={{ scale: 1.02 }}
     >
-      <div className="">
-        <img src={img} className="w-full h-full object-contain" />
-      </div>
-      <h3 className="text-lg text-center font-semibold text-[#374151]">{label}</h3>
+      <h3 className="text-lg text-center font-bold text-[#1C398E]">{label}:</h3>
       <p className="text-lg text-center text-gray-900 font-medium">{value}</p>
     </motion.div>
   );
 };
-
-// export default Profile;

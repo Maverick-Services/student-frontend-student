@@ -14,6 +14,9 @@ function AuthContextProvider({children}){
     )
     const [feeDetails,setFeeDetails] = useState(FEE_DETAILS);
     const [task,setTask] = useState(null);
+    const [queries,setQueries] = useState(
+        localStorage?.getItem("queries") ? JSON.parse(localStorage?.getItem("queries")) : []
+    );
     const [editTask,setEditTask] = useState(false);
    
     useEffect(()=>{
@@ -25,6 +28,11 @@ function AuthContextProvider({children}){
         user && localStorage.setItem("user",JSON.stringify(user));
         // setTeam(JSON.parse(localStorage.getItem("team")));
     },[user]);
+    
+    useEffect(()=>{
+        queries && localStorage.setItem("queries",JSON.stringify(queries));
+        // setTeam(JSON.parse(localStorage.getItem("team")));
+    },[queries]);
 
     let values = {
         task, setTask,
@@ -32,6 +40,7 @@ function AuthContextProvider({children}){
         user, setUser,
         feeDetails, setFeeDetails,
         token, setToken,
+        queries,setQueries,
         loading, setLoading
     }
 

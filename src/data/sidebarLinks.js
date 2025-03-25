@@ -20,6 +20,16 @@ export const sideBarLinks = [
         path: "/dashboard/fees",
         icon: BsCashCoin
     },
+    {
+        name: "Queries",
+        path: "/dashboard/queries",
+        icon: BsCashCoin
+    },
+    {
+        name: "Settings",
+        path: "/dashboard/settings",
+        icon: BsCashCoin
+    },
     // {
     //     name: "Logout"
     // }

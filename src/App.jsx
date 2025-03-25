@@ -8,6 +8,9 @@ import OpenRoute from './components/core/auth/OpenRoute'
 import PrivateRoute from './components/core/auth/PrivateRoute'
 import { EditTaskDetails } from './components/core/dashboard/editTask/EditTaskDetails'
 import FeeDetails from './components/core/dashboard/FeeDetails'
+import { AddQuery } from './components/core/dashboard/AddQuery'
+import Queries from './components/core/dashboard/Queries'
+import { ProfileDetails } from './components/core/dashboard/ProfileDetails'
 
 function App() {
   return (
@@ -28,8 +31,11 @@ function App() {
         >
           <Route path='/dashboard/' element={<Profile/>}/>
           <Route path='/dashboard/tasks' element={<MyTasks/>}/>
-          <Route path='/dashboard/fees' element={<FeeDetails/>}/>
           <Route path='/dashboard/tasks/:taskId' element={<EditTaskDetails/>}/>
+          <Route path='/dashboard/fees' element={<FeeDetails/>}/>
+          <Route path='/dashboard/addQuery' element={<AddQuery/>}/>
+          <Route path='/dashboard/queries' element={<Queries/>}/>
+          <Route path='/dashboard/settings' element={<ProfileDetails/>}/>
         </Route>
       </Routes>
     </div>
