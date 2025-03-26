@@ -1,8 +1,7 @@
 import { IoHome } from "react-icons/io5";
-import { PiStudentDuotone } from "react-icons/pi";
 import { BsCashCoin } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
-import { GiTeacher } from "react-icons/gi";
+import { MdOutlineSettings } from "react-icons/md";
+import { MdContactSupport } from "react-icons/md";
 
 export const sideBarLinks = [
     {
@@ -23,14 +22,11 @@ export const sideBarLinks = [
     {
         name: "Queries",
         path: "/dashboard/queries",
-        icon: BsCashCoin
+        icon: MdContactSupport
     },
     {
         name: "Settings",
         path: "/dashboard/settings",
-        icon: BsCashCoin
-    },
-    // {
-    //     name: "Logout"
-    // }
+        icon: MdOutlineSettings
+    }
 ]
